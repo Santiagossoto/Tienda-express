@@ -1,0 +1,154 @@
+//- Define un bloque llamado 'variables', donde se pueden declarar variables para su uso en la plantilla.
+block variables
+
+//- Declara el tipo de documento como HTML.
+doctype html
+
+//- Define el elemento HTML raíz.
+html
+  head
+    //- Establece la codificación de caracteres del documento como UTF-8.
+    meta(charset="utf-8")
+
+    //- Vincula un ícono de acceso directo, aunque el href está vacío.
+    link(rel="shortcut icon", href="")
+
+    //- Define la metaetiqueta para asegurar que el diseño de la página sea adaptativo.
+    meta(name="viewport", content="width=device-width, initial-scale=1, shrink-to-fit=no")
+
+    //- Define el color del tema de la página.
+    meta(name="theme-color", content="#000000")
+
+    //- Vincula la hoja de estilos de Bootstrap desde un CDN.
+    link(href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous")
+
+    //- Vincula el script de Bootstrap desde un CDN para habilitar las funcionalidades de JavaScript de Bootstrap.
+    script(src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous")
+
+    //- Establece el título de la página utilizando una variable 'title' y agrega " | Tienda CBA".
+    title #{title} | Tienda CBA 
+
+    //- Vincula una hoja de estilo personalizada desde './css/style.css'.
+    link(rel="stylesheet", href="./css/style.css")
+
+  //- Define el cuerpo del documento.
+  body 
+    //- Crea un div con el ID 'root' que probablemente se utilizará como contenedor principal de la aplicación.
+    div#root 
+      //- Define un bloque para el contenido del diseño que será reemplazado por el contenido correspondiente.
+      block layout-content
+
+    //- Crea un elemento de navegación (navbar) de Bootstrap.
+    nav.navbar.navbar-expand-lg.navbar-light.bg-light
+      .container-fluid
+        //- Crea un enlace que actúa como la marca de la navbar, redirigiendo a la página principal.
+        a.navbar-brand(href="#")
+          //- Incluye un logo en la navbar.
+          img(src="./imagenes/logoSena.ico", alt="Logo", width="30", height="24", class="d-inline-block align-text-top")
+
+        //- Crea un botón que permite colapsar la navbar en dispositivos más pequeños.
+        button.navbar-toggler(type="button", data-bs-toggle="collapse", data-bs-target="#navbarNav", aria-controls="navbarNav", aria-expanded="false", aria-label="Toggle navigation")
+          span.navbar-toggler-icon
+
+        //- Crea el contenedor colapsable de la navbar.
+        .collapse.navbar-collapse#navbarNav
+          //- Define una lista de navegación.
+          ul.navbar-nav.me-auto
+            li.nav-item
+              //- Crea un enlace para la página de inicio, marcado como activo.
+              a.nav-link.active.me-4(aria-current="page", href="#") Inicio
+            li.nav-item.dropdown
+              //- Crea un enlace que abre un menú desplegable de categorías.
+              a.nav-link.dropdown-toggle.me-4(href="#", id="navbarDropdown", role="button", data-bs-toggle="dropdown", aria-expanded="false") Categorías
+              //- Define el contenido del menú desplegable.
+              ul.dropdown-menu(aria-labelledby="navbarDropdown")
+                li
+                  //- Enlaces a las categorías disponibles en el menú desplegable.
+                  a.dropdown-item(href="#") Lácteos
+                li
+                  a.dropdown-item(href="#") Vegetales
+                li
+                  a.dropdown-item(href="#") Cárnicos
+            li.nav-item
+              //- Crea un enlace para los servicios ofrecidos.
+              a.nav-link(href="#") Servicios 
+          //- Crea un contenedor flexible para alinear los elementos en la navbar.
+          .d-flex.align-items-center.ms-auto
+            span.icon.me-3
+              //- Incluye un icono de carrito de compras.
+              ion-icon(name="cart-outline")
+            //- Crea un botón de inicio de sesión o registro.
+            a.login-button.me-3(href="/singUp") Sign In / Sign Up
+            //- Crea un botón que activa un menú lateral (offcanvas).
+            button.navbar-toggler.pe-0(type="button", data-bs-toggle="offcanvas", data-bs-target="#offcanvasNavbar", aria-controls="offcanvasNavbar", aria-label="Toggle navigation")
+              span.navbar-toggler-icon
+
+    //- Crea un contenedor para el carrusel de imágenes.
+    .carousel-container
+      #carouselExampleAutoplaying.carousel.slide(data-bs-ride="carousel" data-bs-interval="2000")
+        .carousel-inner
+          //- Define las imágenes del carrusel, marcando la primera como activa.
+          .carousel-item.active
+            img(src="imagenes/img1.jpg" class="d-block w-100" alt="...")
+          .carousel-item
+            img(src="imagenes/img2.jpeg" class="d-block w-100" alt="...")
+          .carousel-item
+            img(src="imagenes/img3.jpg" class="d-block w-100" alt="...")
+        //- Botones de control del carrusel para la navegación hacia atrás.
+        button.carousel-control-prev(type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev")
+          span.carousel-control-prev-icon(aria-hidden="true")
+          span.visually-hidden Previous
+        //- Botones de control del carrusel para la navegación hacia adelante.
+        button.carousel-control-next(type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="next")
+          span.carousel-control-next-icon(aria-hidden="true")
+          span.visually-hidden Next
+
+    //- Crea saltos de línea para el espaciado visual.
+    br
+    br
+    br
+
+    //- Crea un contenedor para la superposición del carrusel con un mensaje.
+    .carousel-overlay.d-flex.justify-content-center.me-5.p-2
+      .row
+        //- Define una columna para el título y la descripción del negocio.
+        .col-sm-12.col-lg-4.offset-lg-8.text-dark.align-item-center
+          h1#Titulo1 Mi tienda Sena 
+          br
+          //- Crea un párrafo descriptivo que solo se muestra en pantallas grandes.
+          p.text-Parrafo.d-none.d-lg-block#Parrafo ¡Descubre la frescura y calidad de nuestros productos Agrícolas! Ofrecemos una amplia variedad de frutas y vegetales, todos seleccionados con el máximo cuidado para garantizar lo mejor para tu hogar y tu mesa.
+
+    //- Crea una línea horizontal como separador de secciones.
+    hr.style
+
+  //- Crea un párrafo para el subtítulo.
+  p.subtitle
+    span Galeria
+
+    //- Crea una sección centrada que muestra imágenes de la galería.
+    section.text-center
+      img(src="imagenes/gal1.jpeg", alt="")
+      img(src="imagenes/gal2.jpeg", alt="")
+      img(src="imagenes/gal3.jpeg", alt="")
+      img(src="imagenes/gal4.jpeg", alt="")
+    
+    br
+
+    //- Crea una línea horizontal como separador.
+    hr
+
+    //- Define el pie de página con un estilo oscuro y centrado.
+    footer.text-dark.text-center.py-3.mt-auto
+      .container
+        //- Incluye el texto de derechos de autor.
+        p.mb-0 © 2024 Mi Aplicación. Todos los derechos reservados.
+        //- Crea una lista desordenada para los enlaces de navegación en el pie de página.
+        ul.list-unstyled.d-flex.justify-content-center.mb-0
+          li.mx-2
+            a.text-dark(href="#") Inicio
+          li.mx-2
+            a.text-dark(href="#") Acerca de
+          li.mx-2
+            a.text-dark(href="#") Servicios
+          li.mx-2
+            a.text-dark(href="#") Contacto

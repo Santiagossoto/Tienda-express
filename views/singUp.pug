@@ -1,0 +1,86 @@
+//- Declara el tipo de documento como HTML.
+doctype html
+
+//- Define el elemento HTML raíz.
+html
+  head
+    //- Vincula una hoja de estilo para la fuente 'Fira Sans' desde Google Fonts.
+    link(rel="stylesheet", href="https://fonts.googleapis.com/css?family=Fira+Sans")
+
+    //- Vincula una hoja de estilo personalizada desde './css/singUp.css'.
+    link(rel="stylesheet", href="./css/singUp.css") 
+
+    //- Establece el título de la página utilizando una variable 'title' y agrega " | Tienda CBA".
+    title #{title} | Tienda CBA
+
+  //- Define el cuerpo del documento.
+  body
+    //- Crea un contenedor principal para la estructura del formulario.
+    .form-structor
+      .signup
+        //- Título del formulario de registro.
+        h2.form-title#signup
+          span
+          | Registrate
+
+        //- Contenedor para los campos del formulario de registro.
+        .form-holder
+          //- Campo de entrada para el nombre del usuario.
+          input.input(type="text" placeholder="Name")
+          //- Campo de entrada para el correo electrónico del usuario.
+          input.input(type="email" placeholder="Email")
+          //- Campo de entrada para la contraseña del usuario.
+          input.input(type="password" placeholder="Password")
+        //- Botón para enviar el formulario de registro.
+        button.submit-btn Registro
+
+      //- Contenedor para el formulario de inicio de sesión, que se desliza hacia arriba.
+      .login.slide-up
+        .center
+          //- Título del formulario de inicio de sesión.
+          h2.form-title#login
+            span
+            | Inicia sesion
+
+          //- Contenedor para los campos del formulario de inicio de sesión.
+          .form-holder
+            //- Campo de entrada para el correo electrónico del usuario.
+            input.input(type="email" placeholder="Email")
+            //- Campo de entrada para la contraseña del usuario.
+            input.input(type="password" placeholder="Password")
+          //- Botón para enviar el formulario de inicio de sesión.
+          button.submit-btn Inicio sesion
+
+      //- Script en línea para manejar la lógica de interacción entre los formularios de inicio de sesión y registro.
+      script.
+          console.clear(); //- Limpia la consola del navegador.
+          const loginBtn = document.getElementById('login'); //- Obtiene el botón de inicio de sesión por su ID.
+          const signupBtn = document.getElementById('signup'); //- Obtiene el botón de registro por su ID.
+
+          //- Añade un evento de clic al botón de inicio de sesión.
+          loginBtn.addEventListener('click', (e) => {
+            let parent = e.target.parentNode.parentNode; //- Obtiene el elemento padre del botón.
+            Array.from(e.target.parentNode.parentNode.classList).find((element) => {
+              if (element !== "slide-up") { //- Si la clase no es "slide-up", agrega la clase para deslizar hacia arriba.
+                parent.classList.add('slide-up');
+              } else {
+                //- Si la clase es "slide-up", desliza hacia el formulario de registro y quita la clase de inicio de sesión.
+                signupBtn.parentNode.classList.add('slide-up');
+                parent.classList.remove('slide-up');
+              }
+            });
+          });
+
+          //- Añade un evento de clic al botón de registro.
+          signupBtn.addEventListener('click', (e) => {
+            let parent = e.target.parentNode; //- Obtiene el elemento padre del botón.
+            Array.from(e.target.parentNode.classList).find((element) => {
+              if (element !== "slide-up") { //- Si la clase no es "slide-up", agrega la clase para deslizar hacia arriba.
+                parent.classList.add('slide-up');
+              } else {
+                //- Si la clase es "slide-up", desliza hacia el formulario de inicio de sesión y quita la clase de registro.
+                loginBtn.parentNode.parentNode.classList.add('slide-up');
+                parent.classList.remove('slide-up');
+              }
+            });
+          });
